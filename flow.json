@@ -81,7 +81,7 @@
         "z": "2c1c052d3644e00b",
         "name": "significant temperature change",
         "func": "deadbandEq",
-        "gap": "15",
+        "gap": "10",
         "start": "",
         "inout": "in",
         "septopics": false,
