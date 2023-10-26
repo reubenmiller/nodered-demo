@@ -5,7 +5,7 @@ Demo nodered project
 
 **Warning**
 
-The project is configured to only work with nodered 3.1 and higher!
+The project is only works with nodered 3.1 and higher!
 
 ### About
 
