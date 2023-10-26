@@ -1,0 +1,117 @@
+[
+    {
+        "id": "2c1c052d3644e00b",
+        "type": "tab",
+        "label": "Temperature Flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f6cf14e7cf58c0b8",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "nodered",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": false,
+        "birthTopic": "tedge/health/nodered-temperature-flow",
+        "birthQos": "0",
+        "birthRetain": "true",
+        "birthPayload": "{\"status\":\"up\",\"type\":\"nodered\"}",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "tedge/health/nodered-temperature-flow",
+        "willQos": "0",
+        "willRetain": "true",
+        "willPayload": "{\"status\":\"down\",\"type\":\"nodered\"}",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "2ce78006931304ac",
+        "type": "mqtt in",
+        "z": "2c1c052d3644e00b",
+        "name": "tedge temperature measurements",
+        "topic": "tedge/measurements",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f6cf14e7cf58c0b8",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 300,
+        "wires": [
+            [
+                "69209fa836d7c4a6"
+            ]
+        ]
+    },
+    {
+        "id": "e80977153b50bf1d",
+        "type": "mqtt out",
+        "z": "2c1c052d3644e00b",
+        "name": "Publish event",
+        "topic": "tedge/events/temperatureChange",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f6cf14e7cf58c0b8",
+        "x": 1040,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "69209fa836d7c4a6",
+        "type": "rbe",
+        "z": "2c1c052d3644e00b",
+        "name": "significant temperature change",
+        "func": "deadbandEq",
+        "gap": "10",
+        "start": "",
+        "inout": "in",
+        "septopics": false,
+        "property": "payload.temperature",
+        "topi": "topic",
+        "x": 570,
+        "y": 300,
+        "wires": [
+            [
+                "080bbdc7b23bc34d"
+            ]
+        ]
+    },
+    {
+        "id": "080bbdc7b23bc34d",
+        "type": "template",
+        "z": "2c1c052d3644e00b",
+        "name": "Create Event",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"text\": \"Temperature changed by ≥10°C. new_value={{payload.temperature}}°C\"}",
+        "output": "json",
+        "x": 830,
+        "y": 300,
+        "wires": [
+            [
+                "e80977153b50bf1d"
+            ]
+        ]
+    }
+]
