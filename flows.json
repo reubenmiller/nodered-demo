@@ -122,7 +122,7 @@
         "type": "mqtt out",
         "z": "2c1c052d3644e00b",
         "name": "Publish health",
-        "topic": "te/device/main///status/health",
+        "topic": "te/device/main/service/nodered-temperature-flow/status/health",
         "qos": "2",
         "retain": "true",
         "respTopic": "",
