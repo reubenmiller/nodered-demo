@@ -25,7 +25,7 @@
         "birthRetain": "true",
         "birthPayload": "{\"status\":\"up\",\"type\":\"nodered\"}",
         "birthMsg": {},
-        "closeTopic": "tedge/health/nodered-temperature-flow",
+        "closeTopic": "te/device/main/service/nodered-temperature-flow/status/health",
         "closeQos": "0",
         "closeRetain": "true",
         "closePayload": "{\"status\":\"down\",\"type\":\"nodered\"}",
