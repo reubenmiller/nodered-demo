@@ -23,7 +23,7 @@
         "birthTopic": "te/device/main/service/nodered-temperature-flow",
         "birthQos": "1",
         "birthRetain": "true",
-        "birthPayload": "{\"@type\":\"service\",\"type\":\"nodered\"}",
+        "birthPayload": "{\"@type\":\"service\",\"@parent\":\"device/main//\",\"type\":\"nodered\"}",
         "birthMsg": {},
         "closeTopic": "te/device/main/service/nodered-temperature-flow/status/health",
         "closeQos": "1",
