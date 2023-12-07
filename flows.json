@@ -55,8 +55,7 @@
         "y": 300,
         "wires": [
             [
-                "69209fa836d7c4a6",
-                "bc34c1899bc022f4"
+                "69209fa836d7c4a6"
             ]
         ]
     },
@@ -131,22 +130,32 @@
         "correl": "",
         "expiry": "",
         "broker": "f6cf14e7cf58c0b8",
-        "x": 700,
+        "x": 400,
         "y": 180,
         "wires": []
     },
     {
-        "id": "bc34c1899bc022f4",
-        "type": "template",
+        "id": "d40786609e8197ef",
+        "type": "inject",
         "z": "2c1c052d3644e00b",
-        "name": "set status",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "{\"status\": \"up\"}",
-        "output": "json",
-        "x": 520,
+        "name": "On Startup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "te/device/main/service/nodered-temperature-flow/status/health",
+        "payload": "{\"status\":\"up\"}",
+        "payloadType": "json",
+        "x": 170,
         "y": 180,
         "wires": [
             [
