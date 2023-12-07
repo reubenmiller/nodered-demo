@@ -20,20 +20,20 @@
         "keepalive": "60",
         "cleansession": false,
         "autoUnsubscribe": true,
-        "birthTopic": "te/device/main/service/nodered-temperature-flow/status/health",
-        "birthQos": "0",
+        "birthTopic": "te/device/main/service/nodered-temperature-flow",
+        "birthQos": "1",
         "birthRetain": "true",
-        "birthPayload": "{\"status\":\"up\",\"type\":\"nodered\"}",
+        "birthPayload": "{\"type\":\"nodered\"}",
         "birthMsg": {},
         "closeTopic": "te/device/main/service/nodered-temperature-flow/status/health",
-        "closeQos": "0",
+        "closeQos": "1",
         "closeRetain": "true",
-        "closePayload": "{\"status\":\"down\",\"type\":\"nodered\"}",
+        "closePayload": "{\"status\":\"down\"}",
         "closeMsg": {},
         "willTopic": "te/device/main/service/nodered-temperature-flow/status/health",
-        "willQos": "0",
+        "willQos": "1",
         "willRetain": "true",
-        "willPayload": "{\"status\":\"down\",\"type\":\"nodered\"}",
+        "willPayload": "{\"status\":\"down\"}",
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
@@ -55,7 +55,8 @@
         "y": 300,
         "wires": [
             [
-                "69209fa836d7c4a6"
+                "69209fa836d7c4a6",
+                "bc34c1899bc022f4"
             ]
         ]
     },
@@ -113,6 +114,43 @@
         "wires": [
             [
                 "e80977153b50bf1d"
+            ]
+        ]
+    },
+    {
+        "id": "236503f8d24cf607",
+        "type": "mqtt out",
+        "z": "2c1c052d3644e00b",
+        "name": "Publish health",
+        "topic": "te/device/main///status/health",
+        "qos": "2",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f6cf14e7cf58c0b8",
+        "x": 700,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "bc34c1899bc022f4",
+        "type": "template",
+        "z": "2c1c052d3644e00b",
+        "name": "set status",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"status\": \"up\"}",
+        "output": "json",
+        "x": 520,
+        "y": 180,
+        "wires": [
+            [
+                "236503f8d24cf607"
             ]
         ]
     }
